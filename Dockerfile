@@ -1,13 +1,15 @@
-FROM golang:1.18-bullseye
+WORKDIR /app
 
-RUN go install github.com/gin-gonic/gin
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
 
-ENV GO111MODULE=on
-ENV GOFLAGS=-mod=vendor
+COPY . .
 
-ENV APP_HOME /go/src/go_todo
-RUN mkdir -p "$APP_HOME"
+RUN go get github.com/titoyudha/golang_todo_list/config
+RUN go get github.com/titoyudha/golang_todo_list/controller
+RUN go get github.com/titoyudha/golang_todo_list/model
 
-WORKDIR "$APP_HOME"
 EXPOSE 8080
-CMD ["gin", "run"]
+
+CMD [ "/todo-list" ]
