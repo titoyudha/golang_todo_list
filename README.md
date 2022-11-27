@@ -63,11 +63,28 @@ Step to run this api to your local machine
   git clone https://github.com/titoyudha/golang_todo_list.git
   change .env files with your configuration
   run go mod tidy
-  go test (to run unit testing)
   go run main.go
 ```
     
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Run By Docker
+
+Pull the project to your local images
+
+```bash
+  docker pull titoyb/go_todo:v1      
+```
+
+
+
+Start the Container
+
+```bash
+ docker run -d -p 80:80 --name web titoyb/go_todo:v1
+
+```
 
